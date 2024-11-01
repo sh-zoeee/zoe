@@ -1,0 +1,17 @@
+corpora/
+
+data/
+
+parsed/
+
+PUD/
+
+chatGPToutputs/
+
+models/
+
+XML/
+
+tmp/
+
+__pycache__

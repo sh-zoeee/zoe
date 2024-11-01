@@ -1,0 +1,95 @@
+[16621, 24721]
+vector dimension: 8
+
+preprocess finished.
+
+Epoch: 1,	Loss: 0.0007840808830223978
+
+Epoch: 50,	Loss: 0.00023056216014083475
+
+Epoch: 100,	Loss: 4.0312552300747484e-05
+
+Epoch: 150,	Loss: 3.931401806767099e-06
+
+Epoch: 200,	Loss: 1.9425944230988534e-07
+
+Epoch: 250,	Loss: 4.20126955447131e-09
+
+Epoch: 300,	Loss: 2.684738542590992e-11
+
+Epoch: 350,	Loss: 9.151858534650918e-16
+
+Epoch: 400,	Loss: 6.020503195407082e-16
+
+Epoch: 450,	Loss: 5.0632630023165804e-21
+
+Epoch: 500,	Loss: 1.420184616546446e-20
+
+Epoch: 550,	Loss: 3.638614614444675e-23
+
+Epoch: 600,	Loss: 1.2777627667983804e-26
+
+Epoch: 650,	Loss: 1.3843959033629635e-27
+
+Epoch: 700,	Loss: 1.0402061229409524e-29
+
+Epoch: 750,	Loss: 3.7395361138288234e-32
+
+Epoch: 800,	Loss: 8.360642155235464e-35
+
+Epoch: 850,	Loss: 1.201678229199521e-37
+
+Epoch: 900,	Loss: 1.0680556765237323e-40
+
+Epoch: 950,	Loss: 1.2751816025355835e-43
+
+Epoch: 1000,	Loss: 2.802596928649634e-45
+
+Epoch: 1050,	Loss: 0.0
+
+Epoch: 1100,	Loss: 0.0
+
+Epoch: 1150,	Loss: 0.0
+
+Epoch: 1200,	Loss: 0.0
+
+Epoch: 1250,	Loss: 0.0
+
+Epoch: 1300,	Loss: 0.0
+
+Epoch: 1350,	Loss: 0.0
+
+Epoch: 1400,	Loss: 0.0
+
+Epoch: 1450,	Loss: 0.0
+
+Epoch: 1500,	Loss: 0.0
+
+Epoch: 1550,	Loss: 0.0
+
+Epoch: 1600,	Loss: 0.0
+
+Epoch: 1650,	Loss: 0.0
+
+Epoch: 1700,	Loss: 0.0
+
+Epoch: 1750,	Loss: 0.0
+
+Epoch: 1800,	Loss: 0.0
+
+Epoch: 1850,	Loss: 0.0
+
+Epoch: 1900,	Loss: 0.0
+
+Epoch: 1950,	Loss: 0.0
+
+Epoch: 2000,	Loss: 0.0
+
+Best Epoch: 998,	Loss: 0.0
+
+train finished.
+	error rate: 0.32
+
+test finished.
+
+time: 110.13216137886047 sec

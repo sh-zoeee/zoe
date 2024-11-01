@@ -1,0 +1,7 @@
+# text = The cat sat on the mat
+1       The     the     DT      _       2       det     __       _
+2       cat     cat     NN      _       3       dep     __       _
+3       sat     sit     VBD     _       0       root    __       _
+4       on      on      IN      _       3       prep    __       _
+5       the     the     DT      _       6       det     __       _
+6       mat     mat     NN      _       4       pobj    __       _
