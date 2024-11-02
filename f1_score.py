@@ -8,13 +8,13 @@ from tqdm import tqdm
 
 def main():
 
-    train_tensors_path = "data/train_tensors_en_corpora_EWT_udpipe_unlabel_10.pt"
-    train_labels_path = "data/train_labels_en_corpora_EWT_udpipe_unlabel_10.pt"
+    train_tensors_path = "data/train_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    train_labels_path = "data/train_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
 
-    test_tensors_path = "data/test_tensors_en_corpora_EWT_udpipe_unlabel_10.pt"
-    test_labels_path = "data/test_labels_en_corpora_EWT_udpipe_unlabel_10.pt"
+    test_tensors_path = "data/test_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    test_labels_path = "data/test_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
 
-    model_path = "models/model_en_corpora_EWT_udpipe_unlabel_10.pth"
+    model_path = "models/model_en_corpora_EWT_udpipe_atis_unlabel_50.pth"
 
     
 

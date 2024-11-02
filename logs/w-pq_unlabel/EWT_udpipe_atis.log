@@ -1,0 +1,61 @@
+[16621, 25938]
+vector dimension: 8
+
+preprocess finished.
+
+Epoch: 1,	Loss: 10.000783920288086
+
+Epoch: 50,	Loss: 10.00023078918457
+
+Epoch: 100,	Loss: 10.000040054321289
+
+Epoch: 150,	Loss: 10.000003814697266
+
+Epoch: 200,	Loss: 10.0
+
+Epoch: 250,	Loss: 10.0
+
+Epoch: 300,	Loss: 10.0
+
+Epoch: 350,	Loss: 10.0
+
+Epoch: 400,	Loss: 10.0
+
+Epoch: 450,	Loss: 10.0
+
+Epoch: 500,	Loss: 10.0
+
+Epoch: 550,	Loss: 10.0
+
+Epoch: 600,	Loss: 10.0
+
+Epoch: 650,	Loss: 10.0
+
+Epoch: 700,	Loss: 10.0
+
+Epoch: 750,	Loss: 10.0
+
+Epoch: 800,	Loss: 10.0
+
+Epoch: 850,	Loss: 10.0
+
+Epoch: 900,	Loss: 10.0
+
+Epoch: 950,	Loss: 10.0
+
+Epoch: 1000,	Loss: 10.0
+
+weights: Parameter containing:
+tensor([-1.6232e-21, -1.6232e-21, -1.6232e-21, -1.6232e-21, -1.6232e-21,
+        -1.6232e-21, -1.6232e-21, -1.6232e-21], device='cuda:0',
+       requires_grad=True)
+
+
+Best Epoch: 187,	Loss: 10.0
+
+train finished.
+	error rate: 0.35
+
+test finished.
+
+time: 520.8528819084167 sec

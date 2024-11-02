@@ -68,22 +68,25 @@ def main():
         En_corpora.pyで生成したtensorなどのデータをそのまま用いる
     """
 
-    train_tensors_path = "data/train_tensors_en_corpora_EWT_EWT_upos_10.pt"
-    valid_tensors_path = "data/valid_tensors_en_corpora_EWT_EWT_upos_10.pt"
-    test_tensors_path = "data/test_tensors_en_corpora_EWT_EWT_upos_10.pt"
+    train_tensors_path = "data/train_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    valid_tensors_path = "data/valid_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    test_tensors_path = "data/test_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
 
     train_tensors = torch.load(train_tensors_path) + torch.load(valid_tensors_path)
     test_tensors = torch.load(test_tensors_path)
 
-    train_labels_path = "data/train_labels_en_corpora_EWT_EWT_upos_10.pt"
-    valid_labels_path = "data/valid_labels_en_corpora_EWT_EWT_upos_10.pt"
-    test_labels_path = "data/test_labels_en_corpora_EWT_EWT_upos_10.pt"
+    train_labels_path = "data/train_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    valid_labels_path = "data/valid_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    test_labels_path = "data/test_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
 
     train_labels = torch.load(train_labels_path) + torch.load(valid_labels_path)
     test_labels = torch.load(test_labels_path)
 
+    LABELS = list(set(test_labels))
+
     test_size = len(test_labels)
-    error = 0
+
+    M = [[0,0],[0,0]]
 
     train_tensors = torch.stack([t.to("cuda") for t in train_tensors])
     test_tensors = torch.stack([t.to("cuda") for t in test_tensors])
@@ -93,18 +96,37 @@ def main():
         test_tensor = test_tensors[i].unsqueeze(0)  # [1, dim]の形状に変換
 
         # 全ての訓練テンソルとの距離をバッチで計算
-        distances = pqgram_distance_batch(train_tensors, test_tensor.repeat(train_tensors.size(0), 1))
+        distances = pqgram_distance_batch(
+            train_tensors, 
+            test_tensor.repeat(train_tensors.size(0), 1)
+        )
 
         # 最小の距離を持つテンソルを見つける
         pred_id = torch.argmin(distances).item()
         pred_label = train_labels[pred_id]
 
         # 予測が間違っていたらエラー数を増加
-        if pred_label != test_labels[i]:
-            error += 1
+        if pred_label == LABELS[0]:
+            if test_labels[i] == LABELS[0]:
+                M[0][0] += 1
+            elif test_labels[i] == LABELS[1]:
+                M[0][1] += 1
+        elif pred_label == LABELS[1]:
+            if test_labels[i] == LABELS[0]:
+                M[1][0] += 1
+            elif test_labels[i] == LABELS[1]:
+                M[1][1] += 1
+        
+    error = M[1][0] + M[0][1]
 
     print(f"error: {error}")
     print(f"error rate: {error/test_size:.2f}")
+
+    TP = M[0][0]/(M[0][0]+M[0][1])
+    FP = M[0][0]/(M[0][0]+M[1][0])
+
+    print(f'f1 score: {2*TP*FP/(TP+FP):.3f}\n')
+
 
     #CORPUS_LIST = []
     #for corpus in CORPORA:

@@ -14,6 +14,7 @@ from time import time
 
 
 
+
 # weighted pq-gram distance の計算
 def weighted_pqgram_distance(weights, tensor1: torch.Tensor, tensor2: torch.Tensor):
     device = tensor1.device
@@ -63,7 +64,7 @@ def distance_matrix_chunked(tensors: torch.Tensor, weights: torch.Tensor, chunk_
     aw = func.softplus(weights).unsqueeze(0).unsqueeze(0)  # [1, 1, dim]
 
     # チャンクごとに計算
-    for i in tqdm(range(0, num_samples, chunk_size)):
+    for i in tqdm(range(0, num_samples, chunk_size), desc="distance matrix", leave=False):
         end_i = min(i + chunk_size, num_samples)
         tensor_chunk_i = tensors[i:end_i].unsqueeze(1)  # [chunk_size, 1, dim]
 
@@ -92,12 +93,13 @@ def distance_matrix_chunked(tensors: torch.Tensor, weights: torch.Tensor, chunk_
 def create_pairs_lmnn(data, labels, weights, k):
 
     #distances = distance_matrix(data, weights)
-    train_tensors = torch.stack([t for t in data])
+    upper_bound = 1000
+    train_tensors = torch.stack([t for t in choices(data, k=upper_bound)])
 
     positive_pairs = []
     negative_pairs = []
 
-    for i in range(len(data)):
+    for i in range(upper_bound):
 
         data_i = train_tensors[i]
 
@@ -108,6 +110,7 @@ def create_pairs_lmnn(data, labels, weights, k):
         targets = []
         impostors = []
         label_i = labels[i]
+
         j = 0
         while len(targets)<=k and j<len(data):
             idx = distances_asc_arg[j]
@@ -117,8 +120,8 @@ def create_pairs_lmnn(data, labels, weights, k):
                 impostors.append(idx)
             j += 1
     
-    positive_pairs.extend([(data[i], data[j]) for j in targets])
-    negative_pairs.extend([(data[i], data[j]) for j in impostors])
+        positive_pairs.extend([(data[i], data[j]) for j in targets])
+        negative_pairs.extend([(data[i], data[j]) for j in impostors])
 
     del distances, distances_asc_arg
     torch.cuda.empty_cache()
@@ -132,7 +135,9 @@ def create_pairs_lmnn(data, labels, weights, k):
 
     #distances = distance_matrix(data, weights)
     distances = distance_matrix_chunked(
-        data.to("cuda" if torch.cuda.is_available() else "cpu"), weights.repeat(), chunk_size=int(len(data)/512)
+        data.to("cuda" if torch.cuda.is_available() else "cpu"), 
+        weights, 
+        chunk_size=int(len(data)/512)
     )  
 
     positive_pairs = []
@@ -427,6 +432,8 @@ def test(
 
     test_labels = torch.load(test_labels_file)
 
+    LABELS = list(set(test_labels))
+
     dimension_tensor = test_tensors[0].size()[0]
 
     # モデルと損失関数 
@@ -436,7 +443,8 @@ def test(
     
 
     test_size = len(test_labels)  # テストデータのサイズ
-    error = 0
+
+    M = [[0,0],[0,0]] # 混同行列
 
     k = 1  # k-NNのk値
 
@@ -453,8 +461,26 @@ def test(
         pred_label = train_labels[pred_id]
 
         # 予測が間違っていたらエラー数を増加
-        if pred_label != test_labels[i]:
-            error += 1
+        if pred_label == LABELS[0]:
+            if test_labels[i] == LABELS[0]:
+                M[0][0] += 1
+            elif test_labels[i] == LABELS[1]:
+                M[0][1] += 1
+        elif pred_label == LABELS[1]:
+            if test_labels[i] == LABELS[0]:
+                M[1][0] += 1
+            elif test_labels[i] == LABELS[1]:
+                M[1][1] += 1
 
-    print(f'\terror rate: {error / test_size:.2f}')
+    print(f"{M}")
+
+    print(f'\terror rate: {(M[0][1]+M[1][0]) / test_size:.2f}')
+    
+    TP = M[0][0]/(M[0][0]+M[0][1])
+    FP = M[0][0]/(M[0][0]+M[1][0])
+
+    print(f'\tf1 score: {2*TP*FP/(TP+FP):.3f}\n')
+
+    return
+    
 
