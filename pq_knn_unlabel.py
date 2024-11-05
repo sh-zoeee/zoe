@@ -68,16 +68,16 @@ def main():
         En_corpora.pyで生成したtensorなどのデータをそのまま用いる
     """
 
-    train_tensors_path = "data/train_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
-    valid_tensors_path = "data/valid_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
-    test_tensors_path = "data/test_tensors_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    train_tensors_path = "data/train_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    valid_tensors_path = "data/valid_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    test_tensors_path = "data/test_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
 
     train_tensors = torch.load(train_tensors_path) + torch.load(valid_tensors_path)
     test_tensors = torch.load(test_tensors_path)
 
-    train_labels_path = "data/train_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
-    valid_labels_path = "data/valid_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
-    test_labels_path = "data/test_labels_en_corpora_En_EWT_udpipe_atis_unlabel_50.pt"
+    train_labels_path = "data/train_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    valid_labels_path = "data/valid_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    test_labels_path = "data/test_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
 
     train_labels = torch.load(train_labels_path) + torch.load(valid_labels_path)
     test_labels = torch.load(test_labels_path)
@@ -118,6 +118,8 @@ def main():
                 M[1][1] += 1
         
     error = M[1][0] + M[0][1]
+
+    print(f"混同行列M:{M}")
 
     print(f"error: {error}")
     print(f"error rate: {error/test_size:.2f}")
@@ -162,7 +164,7 @@ def main():
     error = 0
     test_size = 2000#len(test_indexes)
     print(f'test size: {test_size}')
-    for i, test_id in enumerate(tqdm(test_indexes[:1000])):
+    for i, test_id in enumerate(tqdm(test_indexes[:2000])):
         test_id = int(test_id)
 
         test_pqIndex = pqIndex[test_id]

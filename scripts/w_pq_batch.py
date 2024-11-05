@@ -275,7 +275,12 @@ def predict_label_1nn(model, test_tensor: torch.Tensor, train_tensors, train_lab
 
 # 外部からは以下を呼び出す 
 # データの前処理 
-def preprocessing(CORPUS_FILE: list, type_of_labels: list, save_file_list: list):
+def preprocessing(
+        CORPUS_FILE: list, 
+        type_of_labels: list, 
+        save_file_list: list,
+        random_state : int = 89,
+    ):
     CORPUS_LIST = []
     for corpus in CORPUS_FILE:
         CORPUS_LIST.append(corpus.split(".")[0].split("/")[-1])
@@ -314,8 +319,8 @@ def preprocessing(CORPUS_FILE: list, type_of_labels: list, save_file_list: list)
     indexes = torch.Tensor(range(num_trees))
 
     # 訓練データとテストデータに分割
-    train_tensors, test_tensors, train_labels, test_labels, train_indexes, test_indexes = train_test_split(tensors, labels, indexes, test_size=0.4, random_state=50) # 無印はrandom state = 42
-    valid_tensors, test_tensors, valid_labels, test_labels, valid_indexes, test_indexes = train_test_split(test_tensors, test_labels, test_indexes, test_size=0.5, random_state=50)
+    train_tensors, test_tensors, train_labels, test_labels, train_indexes, test_indexes = train_test_split(tensors, labels, indexes, test_size=0.4, random_state=random_state) # 無印はrandom state = 42
+    valid_tensors, test_tensors, valid_labels, test_labels, valid_indexes, test_indexes = train_test_split(test_tensors, test_labels, test_indexes, test_size=0.5, random_state=random_state)
 
 
     # データの保存
@@ -473,6 +478,8 @@ def test(
                 M[1][1] += 1
 
     print(f"{M}")
+
+    print(f"混同行列 M: {M}")
 
     print(f'\terror rate: {(M[0][1]+M[1][0]) / test_size:.2f}')
     
