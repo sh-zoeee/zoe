@@ -2,6 +2,7 @@ from scripts import w_pq, dist, kNN, trees
 import torch
 
 from tqdm import tqdm
+from time import time
 
 import numpy as np
 from collections import Counter
@@ -180,4 +181,7 @@ def main():
 
 
 if __name__=="__main__":
+    start = time()
     main()
+    end = time()
+    print(f"time: {end-start}sec")

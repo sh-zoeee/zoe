@@ -3,54 +3,54 @@ vector dimension: 8
 
 preprocess finished.
 
-Epoch: 1,	Loss: 52711.328125
+Epoch: 1,	Loss: 51192.43359375
 
-Epoch: 50,	Loss: 37770.73828125
+Epoch: 50,	Loss: 36662.11328125
 
-Epoch: 100,	Loss: 25760.95703125
+Epoch: 100,	Loss: 25083.666015625
 
-Epoch: 150,	Loss: 17796.548828125
+Epoch: 150,	Loss: 17435.97265625
 
-Epoch: 200,	Loss: 12778.78515625
+Epoch: 200,	Loss: 12545.3974609375
 
-Epoch: 250,	Loss: 9658.1474609375
+Epoch: 250,	Loss: 9474.7958984375
 
-Epoch: 300,	Loss: 7663.4521484375
+Epoch: 300,	Loss: 7452.14990234375
 
-Epoch: 350,	Loss: 6608.74755859375
+Epoch: 350,	Loss: 6336.83544921875
 
-Epoch: 400,	Loss: 5843.7373046875
+Epoch: 400,	Loss: 5677.580078125
 
-Epoch: 450,	Loss: 5435.5576171875
+Epoch: 450,	Loss: 5293.853515625
 
-Epoch: 500,	Loss: 5177.2958984375
+Epoch: 500,	Loss: 5033.96826171875
 
-Epoch: 550,	Loss: 5003.8232421875
+Epoch: 550,	Loss: 4882.32568359375
 
-Epoch: 600,	Loss: 4907.333984375
+Epoch: 600,	Loss: 4765.92822265625
 
-Epoch: 650,	Loss: 4825.2890625
+Epoch: 650,	Loss: 4691.62109375
 
-Epoch: 700,	Loss: 4756.326171875
+Epoch: 700,	Loss: 4625.560546875
 
-Epoch: 750,	Loss: 4694.96923828125
+Epoch: 750,	Loss: 4571.91015625
 
-Epoch: 800,	Loss: 4636.037109375
+Epoch: 800,	Loss: 4523.4013671875
 
-Epoch: 850,	Loss: 4574.0146484375
+Epoch: 850,	Loss: 4471.11181640625
 
-Epoch: 900,	Loss: 4521.87109375
+Epoch: 900,	Loss: 4414.609375
 
-Epoch: 950,	Loss: 4474.70947265625
+Epoch: 950,	Loss: 4371.99853515625
 
-Epoch: 1000,	Loss: 4429.11474609375
+Epoch: 1000,	Loss: 4318.4365234375
 
 weights: Parameter containing:
-tensor([-1.2942, -2.1736, -2.2286, -2.1134, -0.4141, -2.1134, -1.2942, -1.2942],
+tensor([-2.2131, -1.0428, -2.0875, -0.4911, -1.0428, -2.0875, -2.1582, -1.0428],
        device='cuda:0', requires_grad=True)
 
 
-Best Epoch: 1000,	Loss: 4429.11474609375
+Best Epoch: 1000,	Loss: 4318.4365234375
 
 train finished.
 [[1959, 2123], [1363, 1204]]
@@ -61,4 +61,4 @@ train finished.
 
 test finished.
 
-time: 833.8900046348572 sec
+time: 835.1968500614166 sec

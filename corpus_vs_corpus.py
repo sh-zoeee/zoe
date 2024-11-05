@@ -11,19 +11,19 @@ def main():
     torch.cuda.empty_cache()
     start = time.time()
 
-    train_tensors_path = "data/train_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    train_labels_path = "data/train_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    train_indexes_path = "data/train_indexes_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    train_tensors_path = "data/train_tensors_en_corpora_En_EWT_spacy_unlabel_20.pt"
+    train_labels_path = "data/train_labels_en_corpora_En_EWT_spacy_unlabel_20.pt"
+    train_indexes_path = "data/train_indexes_en_corpora_En_EWT_spacy_unlabel_20.pt"
 
-    valid_tensors_path = "data/valid_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    valid_labels_path = "data/valid_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    valid_indexes_path = "data/valid_indexes_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    valid_tensors_path = "data/valid_tensors_en_corpora_En_EWT_spacy_unlabel_20.pt"
+    valid_labels_path = "data/valid_labels_en_corpora_En_EWT_spacy_unlabel_20.pt"
+    valid_indexes_path = "data/valid_indexes_en_corpora_En_EWT_spacy_unlabel_20.pt"
 
-    test_tensors_path = "data/test_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    test_labels_path = "data/test_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    test_indexes_path = "data/test_indexes_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    test_tensors_path = "data/test_tensors_en_corpora_En_EWT_spacy_unlabel_20.pt"
+    test_labels_path = "data/test_labels_en_corpora_En_EWT_spacy_unlabel_20.pt"
+    test_indexes_path = "data/test_indexes_en_corpora_En_EWT_spacy_unlabel_20.pt"
 
-    model_path = "models/model_en_corpora_EWT_udpipe_unlabel_20.pth"
+    model_path = "models/model_en_corpora_EWT_spacy_unlabel_20.pth"
 
     TENSORS_PATH_LIST = [
         train_tensors_path, train_labels_path, train_indexes_path,
@@ -31,8 +31,8 @@ def main():
         test_tensors_path, test_labels_path, test_indexes_path
     ]
 
-    CORPORA =   ["corpora/English-EWT.conllu", "parsed/En-EWT-udpipe.conllu"]
-    LABELS = ["EWT", "udpipe"]
+    CORPORA =   ["corpora/English-EWT.conllu", "parsed/En-EWT-spacy.conllu"]
+    LABELS = ["EWT", "spacy"]
 
 
     w_pq.preprocessing(
@@ -49,7 +49,7 @@ def main():
     w_pq.train(
         train_tensors_path, train_labels_path, 
         valid_tensors_path, valid_labels_path,
-        model_path, loss_figure_path="figures/En_EWT_udpipe_unlabel_20.png"
+        model_path, loss_figure_path="figures/En_EWT_spacy_unlabel_20.png"
     )
 
     print('\ntrain finished.')
