@@ -12,6 +12,8 @@ import matplotlib.pyplot as plt
 from collections import Counter
 from time import time
 
+from statistics import mode
+
 
 
 
@@ -57,7 +59,7 @@ def distance_matrix_chunked(tensors: torch.Tensor, weights: torch.Tensor, chunk_
     weights: 重み [dim] のテンソル
     chunk_size: 一度に処理するデータのチャンクサイズ
     """
-    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+    device = torch.device("cuda:2" if torch.cuda.is_available() else "cpu")
 
     num_samples = tensors.shape[0]
     dist_mat = torch.zeros((num_samples, num_samples), device=device)  # 距離行列の初期化
@@ -260,11 +262,11 @@ def predict_label_knn(weights, test_tensors, train_tensors, train_labels, k):
 def predict_label_1nn(model, test_tensor: torch.Tensor, train_tensors, train_labels):
 
     # 各訓練データとの距離を計算
-    min_dist = model(test_tensor, train_tensors[0].to("cuda:0")).item()
+    min_dist = model(test_tensor, train_tensors[0].to("cuda:2")).item()
     min_idx = 0
 
     for i, tensor in enumerate(train_tensors[1:], start=1):
-        distance = model(test_tensor, tensor.to("cuda:0")).item()
+        distance = model(test_tensor, tensor.to("cuda:2")).item()
         if distance < min_dist:
             min_dist = distance
             min_idx = i
@@ -280,6 +282,8 @@ def preprocessing(
         type_of_labels: list, 
         save_file_list: list,
         random_state : int = 89,
+        p : int = 2,
+        q : int = 2,
     ):
     CORPUS_LIST = []
     for corpus in CORPUS_FILE:
@@ -302,10 +306,10 @@ def preprocessing(
     print(CORPUS_i_LENGTH)
     
     num_trees = CORPUS_i_LENGTH[-1]
-    #pqtrees = [trees.conllTree_to_pqTree_upos(conll.to_tree()) for conll in CoNLL]
-    pqtrees = [trees.conllTree_to_pqTree_unlabeled(conll.to_tree()) for conll in CoNLL]
+    pqtrees = [trees.conllTree_to_pqTree_upos(conll.to_tree()) for conll in CoNLL]
+    #pqtrees = [trees.conllTree_to_pqTree_unlabeled(conll.to_tree()) for conll in CoNLL]
     
-    pqIndex = [Profile(tree, p=2, q=2) for tree in pqtrees]
+    pqIndex = [Profile(tree, p=p, q=q) for tree in pqtrees]
 
     J = set(pqIndex[0])
     for pq_set in pqIndex[1:]:
@@ -365,9 +369,9 @@ def train(
 
     # クラスインスタンスの生成
     distance_function = WeightedPqgramDistance(dimension, positive, negative)
-    distance_function = distance_function.to("cuda")
+    distance_function = distance_function.to("cuda:2")
 
-    criterion = MetricLearingLoss(margin1, margin2, beta).to("cuda")
+    criterion = MetricLearingLoss(margin1, margin2, beta).to("cuda:2")
 
     # オプティマイザ
     optimizer = optim.Adam(distance_function.parameters(), lr=0.01)
@@ -428,10 +432,10 @@ def test(
         ):
     
     train_tensors = torch.load(train_tensors_file)
-    train_tensors = torch.stack([t.to("cuda") for t in train_tensors])
+    train_tensors = torch.stack([t.to("cuda:2") for t in train_tensors])
 
     test_tensors = torch.load(test_tensors_file)
-    test_tensors = torch.stack([t.to("cuda") for t in test_tensors])
+    test_tensors = torch.stack([t.to("cuda:2") for t in test_tensors])
 
     train_labels = torch.load(train_labels_file)
 
@@ -444,14 +448,14 @@ def test(
     # モデルと損失関数 
     distance_function = WeightedPqgramDistance(dimension_tensor, [], [])
     distance_function.load_state_dict(torch.load(model_path))
-    distance_function.eval().to("cuda:0")
+    distance_function.eval().to("cuda:2")
     
 
     test_size = len(test_labels)  # テストデータのサイズ
 
     M = [[0,0],[0,0]] # 混同行列
 
-    k = 1  # k-NNのk値
+    k = 3  # k-NNのk値
 
     
     for i in tqdm(range(test_size),desc="[test loop]"):
@@ -462,7 +466,23 @@ def test(
         distances = weighted_pqgram_distance_batch(distance_function.weights, train_tensors, test_tensor.repeat(train_tensors.size(0), 1))
 
         # 最小の距離を持つテンソルを見つける
+        """
+        id_list = torch.argsort(distances, descending=False)[:k]
+        label_list = [train_labels[id] for id in id_list]
+        pred_label = mode(label_list)
+        """
+        
+        
+
         pred_id = torch.argmin(distances).item()
+
+        if distances[pred_id]==0:
+            zero_dists = torch.nonzero(distances == 0, as_tuple=False).to("cpu").detach().numpy()
+            zero_id = np.ndarray(len(zero_dists), dtype=int)
+            for i, id in enumerate(zero_dists):
+                zero_id[i] = int(id)
+            pred_id = np.random.choice(zero_id, size=1)[0]
+        
         pred_label = train_labels[pred_id]
 
         # 予測が間違っていたらエラー数を増加

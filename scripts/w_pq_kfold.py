@@ -169,14 +169,14 @@ class MetricLearingLoss(nn.Module):
 
 # 5-fold cross-validation の実装
 def cross_validation_5_fold(tensors, labels, created_model_name="sample_5_fold"):
-    
+
     LABELS = list(set(labels))
     
     k = 1
     margin1 = margin2 = 5.0
     beta = 1e-4
     dimension = tensors[0].size()[0]
-    num_epoch = 300
+    num_epoch = 1000
 
 
     kf = KFold(n_splits=5, shuffle=True, random_state=42)
@@ -190,6 +190,13 @@ def cross_validation_5_fold(tensors, labels, created_model_name="sample_5_fold")
         print(f"Fold {fold + 1}")
         train_tensors, test_tensors = [tensors[i] for i in train_index], [tensors[i] for i in test_index]
         train_labels, test_labels = [labels[i] for i in train_index], [labels[i] for i in test_index]
+
+        save_dir = "data/"
+        save_path = "_en_corpora_EWT_udpipe_" + str(fold) + "_unlabel.pt"
+        torch.save(train_tensors, save_dir+"train_tensors"+save_path)
+        torch.save(train_labels, save_dir+"train_labels"+save_path)
+        torch.save(test_tensors, save_dir+"test_tensors"+save_path)
+        torch.save(test_labels, save_dir+"test_labels"+save_path)
 
         ewt = 0
         ud = 0
@@ -232,25 +239,28 @@ def cross_validation_5_fold(tensors, labels, created_model_name="sample_5_fold")
                 #print(f'\nEpoch: {epoch+1},\tLoss: {loss.item()}')
                 best_epoch = epoch+1
                 best_loss = loss.item()
-                best_model = distance_function
+                best_model = distance_function.state_dict()
                 continue
 
             if loss.item() < best_loss:
                 best_epoch = epoch+1
                 best_loss = loss.item()
-                best_model = distance_function
+                best_model = distance_function.state_dict()
 
             if epoch%50 == 49:
                 #print(f'\nEpoch: {epoch+1},\tLoss: {loss.item()}')
                 distance_function.setPairs(train_tensors, train_labels, k)
         
-        print(f"{best_epoch},{best_loss}\n")
-        torch.save(best_model.state_dict(), model_path)
+        #print(f"{best_epoch},{best_loss}\n")
+        torch.save(best_model, model_path)
         
         # Evaluation
-
-        weights = best_model.weights
+        """
         with torch.no_grad():
+
+            model = WeightedPqgramDistance(dimension, [], [])
+            model.load_state_dict(best_model)
+            model.eval().to("cuda")
 
             M = [[0,0],[0,0]]
 
@@ -262,8 +272,8 @@ def cross_validation_5_fold(tensors, labels, created_model_name="sample_5_fold")
                 test_tensor = test_tensors[i].unsqueeze(0)  # [1, dim]の形状に変換
 
                 # 全ての訓練テンソルとの距離をバッチで計算
-                distances = weighted_pqgram_distance_batch(weights, train_tensors, test_tensor.repeat(train_tensors.size(0), 1))
-                print(len(distances))
+                distances = weighted_pqgram_distance_batch(model.weights, train_tensors, test_tensor.repeat(train_tensors.size(0), 1))
+                #print(len(distances))
 
                 # 最小の距離を持つテンソルを見つける
                 pred_id = torch.argmin(distances).item()
@@ -291,12 +301,145 @@ def cross_validation_5_fold(tensors, labels, created_model_name="sample_5_fold")
             fold_results_f1_score.append(2*TP*FP/(TP+FP))
 
             print(M)
+            """
+        
+        if fold == 0:
+            break
     
     # Cross-validation results
     #print(f"Average Accuracy: {np.mean(fold_results_error_rate) * 100:.2f}%")
-    return fold_results_error_rate, fold_results_f1_score
+    return 
 
 # 実行例
 # tensors, labels, weightsは適切なデータに置き換えて使用してください。
 # modelも事前に定義されたニューラルネットワークモデルに置き換えてください。
 # cross_validation_5_fold(tensors, labels, weights, model, epochs=10)
+
+
+def test(created_model_name="sample_5_fold"):
+
+    
+
+    save_dir = "data/"
+    save_path = "_en_corpora_EWT_udpipe_" + str(0) + "_unlabel.pt"
+    train_tensors = torch.load(save_dir+"train_tensors"+save_path)
+
+    train_labels = torch.load(save_dir+"train_labels"+save_path)
+    test_tensors = torch.load(save_dir+"test_tensors"+save_path)
+    test_labels = torch.load(save_dir+"test_labels"+save_path)
+    
+    LABELS = list(set(test_labels))
+    dimension = test_tensors[0].size()[0]
+
+    model_path = "models/" + created_model_name + str(0) + ".pth"
+
+    distance_function = WeightedPqgramDistance(dimension, [], [])
+    distance_function.load_state_dict(torch.load(model_path))
+    distance_function.eval().to("cuda")
+
+    test_size = len(test_labels)
+
+    M = [[0,0],[0,0]]
+
+    train_tensors = torch.stack([t.to("cuda") for t in train_tensors])
+    test_tensors = torch.stack([t.to("cuda") for t in test_tensors])
+
+    print(distance_function.weights)
+    print(test_tensors[0])
+    print(train_tensors[29])
+    print(weighted_pqgram_distance(distance_function.weights, test_tensors[0], train_tensors[29]))
+    exit()
+    for i in tqdm(range(test_size),desc="[test loop]"):
+
+        test_tensor = test_tensors[i].unsqueeze(0)  # [1, dim]の形状に変換
+
+        # 全ての訓練テンソルとの距離をバッチで計算
+        distances = weighted_pqgram_distance_batch(distance_function.weights, train_tensors, test_tensor.repeat(train_tensors.size(0), 1))
+        
+
+        # 最小の距離を持つテンソルを見つける
+        print(torch.argsort(distances)[:5])
+        exit()
+        pred_id = torch.argmin(distances).item()
+        pred_label = train_labels[pred_id]
+
+        # 予測が間違っていたらエラー数を増加
+        if pred_label == LABELS[0]:
+            if test_labels[i] == LABELS[0]:
+                M[0][0] += 1
+            elif test_labels[i] == LABELS[1]:
+                M[0][1] += 1
+        elif pred_label == LABELS[1]:
+            if test_labels[i] == LABELS[0]:
+                M[1][0] += 1
+            elif test_labels[i] == LABELS[1]:
+                M[1][1] += 1
+
+    print(f"{M}")
+
+    print(f"混同行列 M: {M}")
+
+    print(f'\terror rate: {(M[0][1]+M[1][0]) / test_size:.2f}')
+    
+    TP = M[0][0]/(M[0][0]+M[0][1])
+    FP = M[0][0]/(M[0][0]+M[1][0])
+
+    print(f'\tf1 score: {2*TP*FP/(TP+FP):.3f}\n')
+
+    return
+    
+
+
+
+    """
+
+    kf = KFold(n_splits=5, shuffle=True, random_state=42)
+
+    indexes = range(len(labels))
+
+
+    
+
+    for fold, (train_index, test_index) in enumerate(kf.split(indexes)):
+
+        print(f"Fold {fold + 1}")
+        train_tensors, test_tensors = [tensors[i] for i in train_index], [tensors[i] for i in test_index]
+        train_labels, test_labels = [labels[i] for i in train_index], [labels[i] for i in test_index]
+        
+        train_tensors = torch.stack([t.to("cuda") for t in train_tensors])
+        test_tensors = torch.stack([t.to("cuda") for t in test_tensors])
+
+        #print(test_index)
+
+        M = [[0,0],[0,0]]
+
+        model_path = "models/" + created_model_name + str(fold) + ".pth"
+
+        model = WeightedPqgramDistance(dimension, [], [])
+        model.load_state_dict(torch.load(model_path))
+        model.eval().to("cuda")
+
+        for i in tqdm(range(test_size)):
+
+            test_tensor = test_tensors[i].unsqueeze(0)
+            distances = weighted_pqgram_distance_batch(model.weights, train_tensors, test_tensor.repeat(train_tensors.size(0), 1))
+
+            # 最小の距離を持つテンソルを見つける
+            pred_id = torch.argmin(distances).item()
+            pred_label = train_labels[pred_id]
+
+            # 予測が間違っていたらエラー数を増加
+            if pred_label == LABELS[0]:
+                if test_labels[i] == LABELS[0]:
+                    M[0][0] += 1
+                elif test_labels[i] == LABELS[1]:
+                    M[0][1] += 1
+            elif pred_label == LABELS[1]:
+                if test_labels[i] == LABELS[0]:
+                    M[1][0] += 1
+                elif test_labels[i] == LABELS[1]:
+                    M[1][1] += 1
+
+        print(M)
+        """
+

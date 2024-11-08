@@ -55,16 +55,19 @@ def main():
     
     indexes = torch.Tensor(range(num_trees))
 
-    res = w_pq.cross_validation_5_fold(tensors, labels)
+    w_pq.cross_validation_5_fold(tensors, labels)
 
-    print(res)
+    w_pq.test()
 
     end = time.time()
 
     print(f'\ntime: {end-start} sec')
     
+
+def main2():
+    w_pq.test()
     
 
 if __name__=="__main__":
-    main()
+    main2()
 

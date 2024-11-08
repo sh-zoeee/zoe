@@ -69,16 +69,16 @@ def main():
         En_corpora.pyで生成したtensorなどのデータをそのまま用いる
     """
 
-    train_tensors_path = "data/train_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    valid_tensors_path = "data/valid_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    test_tensors_path = "data/test_tensors_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    train_tensors_path = "data/train_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
+    valid_tensors_path = "data/valid_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
+    test_tensors_path = "data/test_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
 
     train_tensors = torch.load(train_tensors_path) + torch.load(valid_tensors_path)
     test_tensors = torch.load(test_tensors_path)
 
-    train_labels_path = "data/train_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    valid_labels_path = "data/valid_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
-    test_labels_path = "data/test_labels_en_corpora_En_EWT_udpipe_unlabel_20.pt"
+    train_labels_path = "data/train_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
+    valid_labels_path = "data/valid_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
+    test_labels_path = "data/test_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
 
     train_labels = torch.load(train_labels_path) + torch.load(valid_labels_path)
     test_labels = torch.load(test_labels_path)
@@ -104,6 +104,14 @@ def main():
 
         # 最小の距離を持つテンソルを見つける
         pred_id = torch.argmin(distances).item()
+
+        if distances[pred_id]==0:
+            zero_dists = torch.nonzero(distances == 0, as_tuple=False).to("cpu").detach().numpy()
+            zero_id = np.ndarray(len(zero_dists), dtype=int)
+            for i, id in enumerate(zero_dists):
+                zero_id[i] = int(id[0])
+            pred_id = np.random.choice(zero_id, size=1)[0]
+
         pred_label = train_labels[pred_id]
 
         # 予測が間違っていたらエラー数を増加

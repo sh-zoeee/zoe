@@ -1,63 +1,64 @@
 [16621, 24721]
-vector dimension: 8
+vector dimension: 8610
 
 preprocess finished.
 
-Epoch: 1,	Loss: 47821.296875
+Epoch: 1,	Loss: 119893.953125
 
-Epoch: 50,	Loss: 34067.4375
+Epoch: 50,	Loss: 87726.2578125
 
-Epoch: 100,	Loss: 23539.302734375
+Epoch: 100,	Loss: 62779.34375
 
-Epoch: 150,	Loss: 16093.044921875
+Epoch: 150,	Loss: 45249.19921875
 
-Epoch: 200,	Loss: 11306.736328125
+Epoch: 200,	Loss: 32915.33203125
 
-Epoch: 250,	Loss: 8257.3984375
+Epoch: 250,	Loss: 23979.720703125
 
-Epoch: 300,	Loss: 6532.43603515625
+Epoch: 300,	Loss: 17902.294921875
 
-Epoch: 350,	Loss: 5487.826171875
+Epoch: 350,	Loss: 13807.9892578125
 
-Epoch: 400,	Loss: 4876.654296875
+Epoch: 400,	Loss: 10897.57421875
 
-Epoch: 450,	Loss: 4535.76220703125
+Epoch: 450,	Loss: 8776.8701171875
 
-Epoch: 500,	Loss: 4325.0341796875
+Epoch: 500,	Loss: 7198.47021484375
 
-Epoch: 550,	Loss: 4195.9609375
+Epoch: 550,	Loss: 6246.49365234375
 
-Epoch: 600,	Loss: 4118.24755859375
+Epoch: 600,	Loss: 5648.5107421875
 
-Epoch: 650,	Loss: 4066.602783203125
+Epoch: 650,	Loss: 5122.439453125
 
-Epoch: 700,	Loss: 4025.98779296875
+Epoch: 700,	Loss: 4793.67236328125
 
-Epoch: 750,	Loss: 3979.989501953125
+Epoch: 750,	Loss: 4574.0400390625
 
-Epoch: 800,	Loss: 3928.28564453125
+Epoch: 800,	Loss: 4425.6005859375
 
-Epoch: 850,	Loss: 3882.52490234375
+Epoch: 850,	Loss: 4342.26806640625
 
-Epoch: 900,	Loss: 3845.784423828125
+Epoch: 900,	Loss: 4251.55078125
 
-Epoch: 950,	Loss: 3819.0126953125
+Epoch: 950,	Loss: 4182.34033203125
 
-Epoch: 1000,	Loss: 3792.555908203125
+Epoch: 1000,	Loss: 4094.48828125
 
 weights: Parameter containing:
-tensor([-2.2065, -1.9221, -2.0726, -2.2680, -0.0931, -1.9221, -1.9221, -2.0726],
-       device='cuda:0', requires_grad=True)
+tensor([-1.6231e-21, -3.1446e+00, -2.8872e+00,  ..., -1.6231e-21,
+        -1.6231e-21, -1.6231e-21], device='cuda:2', requires_grad=True)
 
 
-Best Epoch: 1000,	Loss: 3792.555908203125
+Best Epoch: 1000,	Loss: 4094.48828125
 
 train finished.
-[[726, 717], [873, 2629]]
-	error rate: 0.32
-	f1 score: 0.477
+[[1437, 203], [185, 3120]]
+混同行列 M: [[1437, 203], [185, 3120]]
+	error rate: 0.08
+	f1 score: 0.881
 
 
 test finished.
 
-time: 819.1749365329742 sec
+time: 12669.68346118927 sec

@@ -3,61 +3,62 @@ vector dimension: 8
 
 preprocess finished.
 
-Epoch: 1,	Loss: 50213.3125
+Epoch: 1,	Loss: 49758.4140625
 
-Epoch: 50,	Loss: 35923.26171875
+Epoch: 50,	Loss: 35588.28515625
 
-Epoch: 100,	Loss: 24821.767578125
+Epoch: 100,	Loss: 24625.626953125
 
-Epoch: 150,	Loss: 17198.619140625
+Epoch: 150,	Loss: 17000.822265625
 
-Epoch: 200,	Loss: 12378.3232421875
+Epoch: 200,	Loss: 12178.83203125
 
-Epoch: 250,	Loss: 9384.447265625
+Epoch: 250,	Loss: 9029.681640625
 
-Epoch: 300,	Loss: 7531.08056640625
+Epoch: 300,	Loss: 7138.3984375
 
-Epoch: 350,	Loss: 6467.75048828125
+Epoch: 350,	Loss: 6064.19677734375
 
-Epoch: 400,	Loss: 5849.68212890625
+Epoch: 400,	Loss: 5473.84423828125
 
-Epoch: 450,	Loss: 5484.02734375
+Epoch: 450,	Loss: 5093.744140625
 
-Epoch: 500,	Loss: 5261.703125
+Epoch: 500,	Loss: 4899.54248046875
 
-Epoch: 550,	Loss: 5130.6337890625
+Epoch: 550,	Loss: 4741.03857421875
 
-Epoch: 600,	Loss: 5037.162109375
+Epoch: 600,	Loss: 4647.5009765625
 
-Epoch: 650,	Loss: 4957.33642578125
+Epoch: 650,	Loss: 4578.80078125
 
-Epoch: 700,	Loss: 4895.7119140625
+Epoch: 700,	Loss: 4508.4921875
 
-Epoch: 750,	Loss: 4829.52001953125
+Epoch: 750,	Loss: 4449.166015625
 
-Epoch: 800,	Loss: 4757.06787109375
+Epoch: 800,	Loss: 4392.37646484375
 
-Epoch: 850,	Loss: 4676.498046875
+Epoch: 850,	Loss: 4341.00244140625
 
-Epoch: 900,	Loss: 4612.9248046875
+Epoch: 900,	Loss: 4296.9482421875
 
-Epoch: 950,	Loss: 4554.73388671875
+Epoch: 950,	Loss: 4258.9423828125
 
-Epoch: 1000,	Loss: 4486.74658203125
+Epoch: 1000,	Loss: 4231.0947265625
 
 weights: Parameter containing:
-tensor([-2.2077, -2.1817, -2.1817, -2.2843, -1.3559, -1.3559, -0.1672, -1.3559],
+tensor([-1.4104, -1.4104, -1.4104, -2.3139, -2.2091, -2.2091, -2.2182, -0.0633],
        device='cuda:0', requires_grad=True)
 
 
-Best Epoch: 1000,	Loss: 4486.74658203125
+Best Epoch: 1000,	Loss: 4231.0947265625
 
 train finished.
-[[1776, 2030], [1554, 1289]]
-	error rate: 0.54
-	f1 score: 0.498
+[[1697, 1649], [1658, 1645]]
+混同行列 M: [[1697, 1649], [1658, 1645]]
+	error rate: 0.50
+	f1 score: 0.506
 
 
 test finished.
 
-time: 837.3700757026672 sec
+time: 822.6788899898529 sec
