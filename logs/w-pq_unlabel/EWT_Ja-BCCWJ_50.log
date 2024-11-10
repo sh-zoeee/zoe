@@ -1,22 +1,64 @@
 [16621, 73730]
-vector dimension: 11659
+vector dimension: 8
 
 preprocess finished.
 
-Epoch: 1,	Loss: 154272.046875
+Epoch: 1,	Loss: 66805.328125
 
-Epoch: 50,	Loss: 113454.6171875
+Epoch: 50,	Loss: 48218.875
 
-Epoch: 100,	Loss: 81930.8125
+Epoch: 100,	Loss: 33361.7109375
 
-Epoch: 150,	Loss: 59173.6328125
+Epoch: 150,	Loss: 22938.505859375
 
-Epoch: 200,	Loss: 43257.54296875
+Epoch: 200,	Loss: 16123.9248046875
 
-Epoch: 250,	Loss: 32166.123046875
+Epoch: 250,	Loss: 11861.2138671875
 
-Epoch: 300,	Loss: 24883.076171875
+Epoch: 300,	Loss: 9205.0869140625
 
-Epoch: 350,	Loss: 19413.587890625
+Epoch: 350,	Loss: 7498.0947265625
 
-Epoch: 400,	Loss: 15441.5361328125
+Epoch: 400,	Loss: 6451.5927734375
+
+Epoch: 450,	Loss: 5814.29296875
+
+Epoch: 500,	Loss: 5388.2734375
+
+Epoch: 550,	Loss: 5153.58349609375
+
+Epoch: 600,	Loss: 4987.83349609375
+
+Epoch: 650,	Loss: 4851.85009765625
+
+Epoch: 700,	Loss: 4755.9404296875
+
+Epoch: 750,	Loss: 4673.63720703125
+
+Epoch: 800,	Loss: 4605.39404296875
+
+Epoch: 850,	Loss: 4535.8466796875
+
+Epoch: 900,	Loss: 4458.62890625
+
+Epoch: 950,	Loss: 4389.73046875
+
+Epoch: 1000,	Loss: 4312.38427734375
+
+weights: Parameter containing:
+tensor([-2.4657, -0.6779, -0.6779, -2.5402, -0.6779, -2.3586, -2.3586, -0.3769],
+       device='cuda:2', requires_grad=True)
+
+
+Best Epoch: 1000,	Loss: 4312.38427734375
+
+train finished.
+[[9316, 2114], [2554, 762]]
+混同行列 M: [[9316, 2114], [2554, 762]]
+	error rate: 0.32
+	f1 score: 0.800
+
+
+test finished.
+
+time: 912.8297111988068 sec

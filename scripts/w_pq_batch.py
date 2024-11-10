@@ -95,7 +95,7 @@ def distance_matrix_chunked(tensors: torch.Tensor, weights: torch.Tensor, chunk_
 def create_pairs_lmnn(data, labels, weights, k):
 
     #distances = distance_matrix(data, weights)
-    upper_bound = 1000
+    upper_bound = len(data)#1000
     train_tensors = torch.stack([t for t in choices(data, k=upper_bound)])
 
     positive_pairs = []
@@ -284,6 +284,7 @@ def preprocessing(
         random_state : int = 89,
         p : int = 2,
         q : int = 2,
+        label_type : str="unlabel",
     ):
     CORPUS_LIST = []
     for corpus in CORPUS_FILE:
@@ -306,8 +307,10 @@ def preprocessing(
     print(CORPUS_i_LENGTH)
     
     num_trees = CORPUS_i_LENGTH[-1]
-    pqtrees = [trees.conllTree_to_pqTree_upos(conll.to_tree()) for conll in CoNLL]
-    #pqtrees = [trees.conllTree_to_pqTree_unlabeled(conll.to_tree()) for conll in CoNLL]
+    if label_type == "upos":
+        pqtrees = [trees.conllTree_to_pqTree_upos(conll.to_tree()) for conll in CoNLL]
+    else:
+        pqtrees = [trees.conllTree_to_pqTree_unlabeled(conll.to_tree()) for conll in CoNLL]
     
     pqIndex = [Profile(tree, p=p, q=q) for tree in pqtrees]
 

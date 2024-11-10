@@ -19,8 +19,25 @@ def to_prolog(tree: pyconll.tree.tree.Tree) -> str:
         return f'_'
 
 
+def calc_kernel_matrix(data, kernel: tree_kernels.Kernel):
+    n = len(data)
+    matrix = np.zeros((n,n))
+    for i in tqdm(range(n)):
+        for j in range(i,n):
+            matrix[i][j] = kernel.kernel(data[i], data[j])
+    return matrix + matrix.T -np.diag(matrix.diagonal())
 
-def calc_kernel_matrix(data1, data2, kernel: tree_kernels.KernelST):
+
+def calc_kernel_matrix(kernel: tree_kernels.Kernel, data1, data2=None):
+    
+    if data2==None:
+        n = len(data1)
+        matrix = np.zeros((n,n))
+        for i in tqdm(range(n)):
+            for j in range(i,n):
+                matrix[i][j] = kernel.kernel(data1[i], data1[j])
+        return matrix + matrix.T -np.diag(matrix.diagonal())
+
     n1, n2 = len(data1), len(data2)
     matrix = np.zeros((n1, n2))
     for i in tqdm(range(n1)):
@@ -38,7 +55,7 @@ def main():
 
     CoNLL = pyconll.load_from_file("corpora/English/English-EWT.conllu")
     count_en = len(CoNLL)
-    CoNLL += pyconll.load_from_file("corpora/English/English-Atis.conllu")
+    CoNLL += pyconll.load_from_file("parsed/En-EWT-spacy.conllu")
     count_ja = len(CoNLL) - count_en
 
     labels = [0]*count_en + [1]*count_ja
@@ -61,9 +78,9 @@ def main():
     lambda_value = 0.5
     kernel = tree_kernels.KernelST(lambda_value)
 
-    train_kernel_matrix = calc_kernel_matrix(train_data, train_data, kernel)
+    train_kernel_matrix = calc_kernel_matrix(kernel, train_data)
 
-    test_kernel_matrix = calc_kernel_matrix(test_data, train_data, kernel)
+    test_kernel_matrix = calc_kernel_matrix(kernel, test_data, train_data)
 
 
     model = SVC(kernel='precomputed')

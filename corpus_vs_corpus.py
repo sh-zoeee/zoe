@@ -6,26 +6,34 @@ import time, torch
 
 def main():
 
+    import argparse
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument("--target","-t",help="言語")
+    args = argparser.parse_args()
+
+
     random_state = 50
+    label_type = "upos"
     p = 2
     q = 2
+    target = args.target
 
     torch.cuda.empty_cache()
     
 
-    train_tensors_path = f"data/train_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
-    train_labels_path = f"data/train_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
-    train_indexes_path = f"data/train_indexes_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
+    train_tensors_path = f"data/train_tensors_PUD_En_{target}_upos_{str(random_state)}.pt"
+    train_labels_path = f"data/train_labels_PUD_En_{target}_upos_{str(random_state)}.pt"
+    train_indexes_path = f"data/train_indexes_PUD_En_{target}_upos_{str(random_state)}.pt"
 
-    valid_tensors_path = f"data/valid_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
-    valid_labels_path = f"data/valid_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
-    valid_indexes_path = f"data/valid_indexes_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
+    valid_tensors_path = f"data/valid_tensors_PUD_En_{target}_upos_{str(random_state)}.pt"
+    valid_labels_path = f"data/valid_labels_PUD_En_{target}_upos_{str(random_state)}.pt"
+    valid_indexes_path = f"data/valid_indexes_PUD_En_{target}_upos_{str(random_state)}.pt"
 
-    test_tensors_path = f"data/test_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
-    test_labels_path = f"data/test_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
-    test_indexes_path = f"data/test_indexes_en_corpora_En-EWT_Ja-BCCWJ_upos_{str(random_state)}.pt"
+    test_tensors_path = f"data/test_tensors_PUD_En_{target}_upos_{str(random_state)}.pt"
+    test_labels_path = f"data/test_labels_PUD_En_{target}_upos_{str(random_state)}.pt"
+    test_indexes_path = f"data/test_indexes_PUD_En_{target}_upos_{str(random_state)}.pt"
 
-    model_path = f"models/model_en_corpora_EWT_Ja-BCCWJ_{str(random_state)}.pth"
+    model_path = f"models/model_PUD_En_{target}_upos_{str(random_state)}.pth"
 
     TENSORS_PATH_LIST = [
         train_tensors_path, train_labels_path, train_indexes_path,
@@ -33,8 +41,8 @@ def main():
         test_tensors_path, test_labels_path, test_indexes_path
     ]
 
-    CORPORA =   ["corpora/English/English-EWT.conllu", "corpora/Japanese/Japanese-BCCWJ.conllu"]
-    LABELS = ["EWT","Ja-BCCWJ"]
+    CORPORA =   ["PUD/English-PUD.conllu", f"PUD/{target}-PUD.conllu"]
+    LABELS = [0,1]
 
     start = time.time()
 
@@ -44,6 +52,7 @@ def main():
         save_file_list=TENSORS_PATH_LIST, 
         random_state=random_state,
         p = p,  q = q,
+        label_type = label_type
     )
     
     
@@ -53,7 +62,7 @@ def main():
     w_pq.train(
         train_tensors_path, train_labels_path, 
         valid_tensors_path, valid_labels_path,
-        model_path, loss_figure_path=f"figures/En-EWT_Ja-BCCWJ_upos_{str(random_state)}.png"
+        model_path, loss_figure_path=f"figures/PUD_En_{target}_{str(random_state)}.png"
     )
 
     print('\ntrain finished.')

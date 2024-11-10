@@ -69,16 +69,27 @@ def main():
         En_corpora.pyで生成したtensorなどのデータをそのまま用いる
     """
 
-    train_tensors_path = "data/train_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
-    valid_tensors_path = "data/valid_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
-    test_tensors_path = "data/test_tensors_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
+    import argparse
+    argparser = argparse.ArgumentParser()
+    argparser.add_argument("--target","-t",help="言語")
+    args = argparser.parse_args()
+
+    target = args.target
+
+    random_state = 50
+    label_type = "upos"
+
+
+    train_tensors_path = f"data/train_tensors_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
+    valid_tensors_path = f"data/valid_tensors_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
+    test_tensors_path = f"data/test_tensors_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
 
     train_tensors = torch.load(train_tensors_path) + torch.load(valid_tensors_path)
     test_tensors = torch.load(test_tensors_path)
 
-    train_labels_path = "data/train_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
-    valid_labels_path = "data/valid_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
-    test_labels_path = "data/test_labels_en_corpora_En-EWT_Ja-BCCWJ_upos_50.pt"
+    train_labels_path = f"data/train_labels_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
+    valid_labels_path = f"data/valid_labels_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
+    test_labels_path = f"data/test_labels_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
 
     train_labels = torch.load(train_labels_path) + torch.load(valid_labels_path)
     test_labels = torch.load(test_labels_path)
