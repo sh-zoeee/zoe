@@ -37,6 +37,22 @@ def weighted_pqgram_distance_batch(weights, batch1: torch.Tensor, batch2: torch.
     return (diff*aw).sum(dim=1)
 
 
+def normalize_tensor(t: torch.Tensor) -> torch.Tensor:
+
+    min_val = t.min(dim=0).values
+    max_val = t.max(dim=0).values
+
+    return (t-max_val)/(max_val-min_val)
+
+
+def standardize_tensor(t: torch.Tensor) -> torch.Tensor:
+
+    mean = t.mean(dim=0)
+    std = t.std(dim=0)
+    
+    return (t-mean)/std
+
+
 
 # weighted pq-gram distance の距離行列の作成
 def distance_matrix(tensors: torch.Tensor, weights: torch.Tensor):
@@ -95,7 +111,7 @@ def distance_matrix_chunked(tensors: torch.Tensor, weights: torch.Tensor, chunk_
 def create_pairs_lmnn(data, labels, weights, k):
 
     #distances = distance_matrix(data, weights)
-    upper_bound = len(data)#1000
+    upper_bound = min(len(data),1000)
     train_tensors = torch.stack([t for t in choices(data, k=upper_bound)])
 
     positive_pairs = []
@@ -285,6 +301,8 @@ def preprocessing(
         p : int = 2,
         q : int = 2,
         label_type : str="unlabel",
+        normalize : bool = False, 
+        standardize : bool = False,
     ):
     CORPUS_LIST = []
     for corpus in CORPUS_FILE:
@@ -322,6 +340,11 @@ def preprocessing(
     print(f'vector dimension: {len(J)}')
 
     tensors = [pq_gram.pqgram_to_tensor(pqgram, J) for pqgram in tqdm(pqIndex, desc="[convert tensor]")]
+
+    if normalize:
+        tensors = [normalize_tensor(tensor) for tensor in tensors]
+    elif standardize:
+        tensors = [standardize_tensor(tensor) for tensor in tensors]
     
     indexes = torch.Tensor(range(num_trees))
 

@@ -71,25 +71,27 @@ def main():
 
     import argparse
     argparser = argparse.ArgumentParser()
-    argparser.add_argument("--target","-t",help="言語")
+    argparser.add_argument("--source","-s",help="比較元")
+    argparser.add_argument("--target","-t",help="比較対象")
     args = argparser.parse_args()
 
+    source = args.source
     target = args.target
 
     random_state = 50
     label_type = "upos"
 
 
-    train_tensors_path = f"data/train_tensors_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
-    valid_tensors_path = f"data/valid_tensors_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
-    test_tensors_path = f"data/test_tensors_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
+    train_tensors_path = f"data/train_tensors_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    valid_tensors_path = f"data/valid_tensors_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    test_tensors_path = f"data/test_tensors_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
 
     train_tensors = torch.load(train_tensors_path) + torch.load(valid_tensors_path)
     test_tensors = torch.load(test_tensors_path)
 
-    train_labels_path = f"data/train_labels_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
-    valid_labels_path = f"data/valid_labels_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
-    test_labels_path = f"data/test_labels_PUD_En_{target}_{label_type}_{str(random_state)}.pt"
+    train_labels_path = f"data/train_labels_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    valid_labels_path = f"data/valid_labels_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    test_labels_path = f"data/test_labels_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
 
     train_labels = torch.load(train_labels_path) + torch.load(valid_labels_path)
     test_labels = torch.load(test_labels_path)

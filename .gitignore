@@ -15,3 +15,5 @@ XML/
 tmp/
 
 __pycache__
+
+*.npy

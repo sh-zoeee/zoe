@@ -1,13 +1,14 @@
 import numpy as np
 from tqdm import tqdm
 from time import time
+from collections import Counter
 
 import pyconll
 from scripts.TreeKernel import tree, tree_kernels
 
 from sklearn.svm import SVC
 from sklearn.model_selection import train_test_split
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report, accuracy_score, confusion_matrix
 
 
 def to_prolog(tree: pyconll.tree.tree.Tree) -> str:
@@ -49,16 +50,26 @@ def calc_kernel_matrix(kernel: tree_kernels.Kernel, data1, data2=None):
 
 def main():
 
-    random_state = 50
+    random_state = 10
     
     start = time()
 
-    CoNLL = pyconll.load_from_file("corpora/English/English-EWT.conllu")
+    CoNLL = pyconll.load_from_file("corpora/English/English-ESL.conllu")
     count_en = len(CoNLL)
-    CoNLL += pyconll.load_from_file("parsed/En-EWT-spacy.conllu")
+    CoNLL += pyconll.load_from_file("corpora/English/English-Atis.conllu")
     count_ja = len(CoNLL) - count_en
 
-    labels = [0]*count_en + [1]*count_ja
+    if count_en==count_ja:
+        labels = [0]*count_en + [1]*count_ja
+    elif count_en < count_ja:
+        CoNLL = CoNLL[:2*count_en]
+        labels = [0]*count_en + [1]*count_en
+    else:
+        CoNLL = CoNLL[count_en-count_ja:]
+        labels = [0]*count_ja + [1]*count_ja
+
+
+    
 
     trees = [conll.to_tree() for conll in CoNLL]
 
@@ -88,15 +99,18 @@ def main():
 
     test_pred = model.predict(test_kernel_matrix)
 
-    print("test labels:")
-    print(test_labels)
+    print("Confusion Matrix:")
+    print(confusion_matrix(test_labels, test_pred))
 
-    print("prediction:")
-    print(test_pred)
+
 
     print(classification_report(test_labels, test_pred))
 
-    print(accuracy_score(test_labels, test_pred))
+    acc = accuracy_score(test_labels, test_pred)
+
+    print(f"acc: {acc}")
+    print(f"error rate: {1-acc}")
+
 
     end = time()
 
