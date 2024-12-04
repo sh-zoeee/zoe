@@ -5,6 +5,7 @@ A set of Classes to handle trees and compute kernel functions on them
 
 import random
 import bisect
+from functools import cmp_to_key
 
 
 """
@@ -16,6 +17,9 @@ import bisect
 
 def cmp(a,b):
     return (a > b) - (a < b)
+
+def cmp_list(x,y):
+    return (x[0]>y[0]) - (x[0]<y[0])
 
 
 class TreeNode:
@@ -501,7 +505,7 @@ class LabelSubtreeList():
         return self.labelList[i][1]
 
     def sort(self):
-        self.labelList.sort(cmp = lambda x, y: cmp(x[0], y[0]))
+        self.labelList.sort(key=cmp_to_key(cmp_list))
 
     def __len__(self):
         return len(self.labelList)

@@ -1,0 +1,24 @@
+0th loop, 0.0024521350860595703sec
+2000th loop, 332.3307955265045sec
+4000th loop, 607.3660728931427sec
+6000th loop, 825.4466915130615sec
+8000th loop, 979.6630733013153sec
+10000th loop, 1073.4498012065887sec
+12000th loop, 1115.397234916687sec
+0th loop, 0.0005843639373779297sec
+2000th loop, 360.5976519584656sec
+Confusion Matrix:
+[[1520  118]
+ [ 110 1492]]
+              precision    recall  f1-score   support
+
+           0       0.93      0.93      0.93      1638
+           1       0.93      0.93      0.93      1602
+
+    accuracy                           0.93      3240
+   macro avg       0.93      0.93      0.93      3240
+weighted avg       0.93      0.93      0.93      3240
+
+acc: 0.9296296296296296
+error rate: 0.07037037037037042
+time: 1719.5118107795715sec

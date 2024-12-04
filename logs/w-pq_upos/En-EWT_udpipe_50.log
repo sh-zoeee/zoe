@@ -1,0 +1,64 @@
+[16621, 33242]
+vector dimension: 8521
+
+preprocess finished.
+
+Epoch: 1,	Loss: 127795.78125
+
+Epoch: 50,	Loss: 93653.4375
+
+Epoch: 100,	Loss: 67271.5
+
+Epoch: 150,	Loss: 48222.51171875
+
+Epoch: 200,	Loss: 34683.05859375
+
+Epoch: 250,	Loss: 25614.091796875
+
+Epoch: 300,	Loss: 19363.013671875
+
+Epoch: 350,	Loss: 14633.6904296875
+
+Epoch: 400,	Loss: 11622.9111328125
+
+Epoch: 450,	Loss: 9518.1142578125
+
+Epoch: 500,	Loss: 8088.62109375
+
+Epoch: 550,	Loss: 7144.54931640625
+
+Epoch: 600,	Loss: 6422.3759765625
+
+Epoch: 650,	Loss: 5927.6630859375
+
+Epoch: 700,	Loss: 5566.60302734375
+
+Epoch: 750,	Loss: 5302.0693359375
+
+Epoch: 800,	Loss: 5109.9091796875
+
+Epoch: 850,	Loss: 4955.52392578125
+
+Epoch: 900,	Loss: 4841.33154296875
+
+Epoch: 950,	Loss: 4768.10400390625
+
+Epoch: 1000,	Loss: 4705.173828125
+
+weights: Parameter containing:
+tensor([-1.6231e-21, -1.6231e-21, -2.7537e+00,  ..., -1.6231e-21,
+        -1.6231e-21, -3.1684e+00], device='cuda:2', requires_grad=True)
+
+
+Best Epoch: 1000,	Loss: 4705.173828125
+
+train finished.
+[[973, 2304], [1435, 1937]]
+混同行列 M: [[973, 2304], [1435, 1937]]
+	error rate: 0.56
+	f1 score: 0.342
+
+
+test finished.
+
+time: 12496.45759344101 sec

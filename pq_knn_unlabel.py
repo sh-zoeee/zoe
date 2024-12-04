@@ -66,7 +66,7 @@ def main():
     #LABELS = ["EWT", "EWT2"]
 
     """
-        En_corpora.pyで生成したtensorなどのデータをそのまま用いる
+        en_corpora.pyで生成したtensorなどのデータをそのまま用いる
     """
 
     import argparse
@@ -82,16 +82,16 @@ def main():
     label_type = "upos"
 
 
-    train_tensors_path = f"data/train_tensors_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    valid_tensors_path = f"data/valid_tensors_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    test_tensors_path = f"data/test_tensors_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    train_tensors_path = f"data/train_tensors_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    valid_tensors_path = f"data/valid_tensors_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    test_tensors_path = f"data/test_tensors_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
 
     train_tensors = torch.load(train_tensors_path) + torch.load(valid_tensors_path)
     test_tensors = torch.load(test_tensors_path)
 
-    train_labels_path = f"data/train_labels_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    valid_labels_path = f"data/valid_labels_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    test_labels_path = f"data/test_labels_PUD_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    train_labels_path = f"data/train_labels_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    valid_labels_path = f"data/valid_labels_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    test_labels_path = f"data/test_labels_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
 
     train_labels = torch.load(train_labels_path) + torch.load(valid_labels_path)
     test_labels = torch.load(test_labels_path)
