@@ -79,19 +79,19 @@ def main():
     target = args.target
 
     random_state = 50
-    label_type = "upos"
+    label_type = "unlabel"
 
 
-    train_tensors_path = f"data/train_tensors_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    valid_tensors_path = f"data/valid_tensors_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    test_tensors_path = f"data/test_tensors_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    train_tensors_path = f"data/train_tensors_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    valid_tensors_path = f"data/valid_tensors_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    test_tensors_path = f"data/test_tensors_{source}_{target}_{label_type}_{str(random_state)}.pt"
 
     train_tensors = torch.load(train_tensors_path) + torch.load(valid_tensors_path)
     test_tensors = torch.load(test_tensors_path)
 
-    train_labels_path = f"data/train_labels_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    valid_labels_path = f"data/valid_labels_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
-    test_labels_path = f"data/test_labels_en_corpora_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    train_labels_path = f"data/train_labels_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    valid_labels_path = f"data/valid_labels_{source}_{target}_{label_type}_{str(random_state)}.pt"
+    test_labels_path = f"data/test_labels_{source}_{target}_{label_type}_{str(random_state)}.pt"
 
     train_labels = torch.load(train_labels_path) + torch.load(valid_labels_path)
     test_labels = torch.load(test_labels_path)

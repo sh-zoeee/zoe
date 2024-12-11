@@ -1,0 +1,15 @@
+lambda=(mu)=0.5
+
+[matrix for train]:   0%|          | 0/26593 [00:00<?, ?it/s]0th loop, 0.0029053688049316406sec
+
+[matrix for train]:   0%|          | 0/26593 [00:00<?, ?it/s]
+Traceback (most recent call last):
+  File "/misc/home/yamazoe/zoe/main_TreeKernel.py", line 147, in <module>
+    main()
+  File "/misc/home/yamazoe/zoe/main_TreeKernel.py", line 117, in main
+    train_kernel_matrix = calc_kernel_matrix(kernel, train_data)
+                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/misc/home/yamazoe/zoe/main_TreeKernel.py", line 45, in calc_kernel_matrix
+    k2 = kernel.kernel(data2[j], data2[j])
+                       ~~~~~^^^
+TypeError: 'NoneType' object is not subscriptable
