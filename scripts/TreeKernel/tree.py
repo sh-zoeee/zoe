@@ -390,7 +390,7 @@ class Tree:
     #A tree instance suitable for being processed by a tree kernel
     #A TreeNode retain properties of single nodes, a Tree a property
     #of a set of nodes: max/average outdegree, max depth
-    def __init__(self, root, target = ""):
+    def __init__(self, root: TreeNode, target = ""):
         self.root = root
         self.target = target
 
@@ -495,7 +495,7 @@ class ProdSubtreeList():
             return cmp(len(x[0]),len(y[0]))
 
 class LabelSubtreeList():
-    def __init__(self, root):
+    def __init__(self, root: TreeNode):
         self.labelList = root.labelList()
 
     def getLabel(self,i):

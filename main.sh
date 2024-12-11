@@ -1,10 +1,10 @@
 #!/bin/bash
 
-sourceCorpus="En-EWT"
-labelType="upos"
+sourceCorpus="Ja-BCCWJ"
+labelType="unlabel"
 
 
-targetCorpus="EWT"
+targetCorpus="Ko-Kaist"
 
 
 echo start: ${sourceCorpus} vs ${targetCorpus}
