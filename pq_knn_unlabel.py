@@ -78,7 +78,7 @@ def main():
     source = args.source
     target = args.target
 
-    random_state = 50
+    random_state = 10
     label_type = "unlabel"
 
 
