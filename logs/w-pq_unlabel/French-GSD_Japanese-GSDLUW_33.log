@@ -1,0 +1,16 @@
+[3997, 12097]
+vector dimension: 5852
+
+preprocess finished.
+
+Epoch: 1,	Loss: 136640.046875
+
+Epoch: 50,	Loss: 100314.0703125
+
+Epoch: 100,	Loss: 70968.09375
+
+Epoch: 150,	Loss: 50658.37890625
+
+Epoch: 200,	Loss: 36788.75390625
+
+Epoch: 250,	Loss: 27133.298828125

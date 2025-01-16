@@ -65,11 +65,11 @@ class KernelST(Kernel):
         
     def evaluate(self,a,b):
         ha, hb = (a.kernelstrepr, b.kernelstrepr)
-        # print(ha.sids, '\n', hb.sids)
+        # print(len(ha.sids), ha.sids, '\n', len(hb.sids), hb.sids)
         #Assumes ha and hb are ordered list of pairs (subtreeid, subtreesize) 
         #a.kernelreprst,b.kernelreprst are checked or created in preProcess()
         i,j,k,toti,totj = (0,0,0,len(ha), len(hb))
-        #print(toti, totj)
+        # print(toti, totj)
         while i < toti and j < totj:
             if ha.getSubtreeID(i) == hb.getSubtreeID(j):
                 ci,cj=(i,j)
@@ -77,7 +77,9 @@ class KernelST(Kernel):
                     i += 1
                 while j < totj and hb.getSubtreeID(j)==hb.getSubtreeID(cj):
                     j += 1
-                # print(i,ci,j,cj,ha.getSubtreeSize(ci))
+                #print(ha.getSubtreeID(ci), hb.getSubtreeID(cj))
+                #print(i,ci,j,cj,ha.getSubtreeSize(ci))
+                #print("k+=", (i-ci)*(j-cj)*(self.l**ha.getSubtreeSize(ci)))
                 k += (i-ci)*(j-cj)*(self.l**ha.getSubtreeSize(ci))
             elif ha.getSubtreeID(i) < hb.getSubtreeID(j):
                 i += 1
@@ -207,7 +209,9 @@ class KernelPT(Kernel):
                 while i < toti and la.getLabel(i) == la.getLabel(ci):
                     j = cj
                     while j < totj and lb.getLabel(j) == lb.getLabel(cj):
+                        # 
                         print(la.getTree(i), lb.getTree(j), k)
+                        # チェック用 
                         k += self.CPT(la.getTree(i),lb.getTree(j))
                         j += 1
                     i += 1

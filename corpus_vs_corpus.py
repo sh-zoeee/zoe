@@ -13,7 +13,7 @@ def main():
     args = argparser.parse_args()
 
 
-    random_state = 50
+    random_state = 10
     label_type = "unlabel"
     p = 2
     q = 2
@@ -43,7 +43,7 @@ def main():
         test_tensors_path, test_labels_path, test_indexes_path
     ]
 
-    CORPORA =   [f"corpora/Korean/Korean-Kaist.conllu", f"corpora/Japanese/Japanese-BCCWJ.conllu"]
+    CORPORA =   [f"corpora/English/English-EWT.conllu", f"corpora/English/English-Atis.conllu"]
     #CORPORA =   [f"PUD/{source}-PUD.conllu", f"PUD/{target}-PUD.conllu"]
     LABELS = [0,1]
 
@@ -69,7 +69,8 @@ def main():
     )
 
     print('\ntrain finished.')
-    
+
+    torch.cuda.empty_cache()
     
     w_pq.test(
         train_tensors_path, train_labels_path,

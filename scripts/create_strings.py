@@ -109,17 +109,14 @@ def create_complete_tree_TK_upos(n: int, labels: list=[]) -> tree.Tree :
         
 
 
-def create_complete_tree_TK_unlabel(n: int, labels: list=[]) -> tree.Tree :
+def create_complete_tree_TK_unlabel(n: int) -> tree.Tree :
     
-    if len(labels)==0:
-        for _ in range(n):
-            labels.append("_")
 
-    if n <= 0 or len(labels)!=n:
+    if n <= 0:
         return None
 
     
-    nodes = [MyTree(labels[i]) for i in range(n)]
+    nodes = [MyTree(value="_") for i in range(n)]
 
     for i in range(n):
         left_index = 2*i + 1
@@ -158,21 +155,17 @@ def create_linear_tree_TK_upos(n, direction="left", labels: list=[]) -> tree.Tre
 
 
 
-def create_linear_tree_TK_unlabel(n, direction="left", labels: list=[]) -> tree.Tree:
+def create_linear_tree_TK_unlabel(n, direction="left") -> tree.Tree:
 
     if n <= 0 or direction not in ["left", "right"]:
         return None
-    
-    if len(labels) == 0:
-        for _ in range(n):
-            labels.append("_")
 
 
-    root = MyTree(labels[0])
+    root = MyTree(value="_")
     current = root
 
     for i in range(1, n):
-        new_node = MyTree(value=labels[i])
+        new_node = MyTree(value="_")
         if direction == "left":
             current.left = new_node
         elif direction == "right": 

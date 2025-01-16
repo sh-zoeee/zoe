@@ -374,12 +374,12 @@ def train(
 
     # 訓練データのロード
     train_tensors = torch.load(train_tensors_file)
-    train_tensors = torch.stack([t.to("cpu") for t in train_tensors])
+    train_tensors = torch.stack([t.to("cuda:1") for t in train_tensors])
     train_labels = torch.load(train_labels_file)
 
     # 検証データのロード
     valid_tensors = torch.load(valid_tensors_file)
-    valid_tensors = torch.stack([t.to("cpu") for t in valid_tensors])
+    valid_tensors = torch.stack([t.to("cuda:1") for t in valid_tensors])
     valid_labels = torch.load(valid_labels_file)
 
     # ハイパーパラメータなど
@@ -395,9 +395,9 @@ def train(
 
     # クラスインスタンスの生成
     distance_function = WeightedPqgramDistance(dimension, positive, negative)
-    distance_function = distance_function.to("cuda:2")
+    distance_function = distance_function.to("cuda:1")
 
-    criterion = MetricLearingLoss(margin1, margin2, beta).to("cuda:2")
+    criterion = MetricLearingLoss(margin1, margin2, beta).to("cuda:1")
 
     # オプティマイザ
     optimizer = optim.Adam(distance_function.parameters(), lr=0.01)
@@ -458,10 +458,10 @@ def test(
         ):
     
     train_tensors = torch.load(train_tensors_file)
-    train_tensors = torch.stack([t.to("cuda:2") for t in train_tensors])
+    train_tensors = torch.stack([t.to("cuda:0") for t in train_tensors])
 
     test_tensors = torch.load(test_tensors_file)
-    test_tensors = torch.stack([t.to("cuda:2") for t in test_tensors])
+    test_tensors = torch.stack([t.to("cuda:0") for t in test_tensors])
 
     train_labels = torch.load(train_labels_file)
 
@@ -474,14 +474,14 @@ def test(
     # モデルと損失関数 
     distance_function = WeightedPqgramDistance(dimension_tensor, [], [])
     distance_function.load_state_dict(torch.load(model_path))
-    distance_function.eval().to("cuda:2")
+    distance_function.eval().to("cuda:0")
     
 
     test_size = len(test_labels)  # テストデータのサイズ
 
     M = [[0,0],[0,0]] # 混同行列
 
-    k = 3  # k-NNのk値
+    k = 1  # k-NNのk値
 
     
     for i in tqdm(range(test_size),desc="[test loop]"):

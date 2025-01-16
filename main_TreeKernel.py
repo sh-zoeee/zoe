@@ -61,34 +61,31 @@ def calc_kernel_matrix(kernel: tree_kernels.Kernel, data1, data2=None):
 
 def main():
 
-    argparser = ArgumentParser()
-    argparser.add_argument("--kernel", "-k", help="カーネルの種類")
-    args = argparser.parse_args()
-
-    kernel_type = args.kernel
-    if kernel_type not in ["ST", "PT"]:
-        print(f"ERROR: kernel is {kernel_type}, not in [ST, PT].\n")
-        exit()
-
     random_state = 10
     
     start = time()
 
     CoNLL = pyconll.load_from_file("corpora/English/English-EWT.conllu")
-    count_en = len(CoNLL)
-    CoNLL += pyconll.load_from_file("corpora/Korean/Korean-Kaist.conllu")
-    count_ja = len(CoNLL) - count_en
+    count_src = len(CoNLL)
+    CoNLL += pyconll.load_from_file("corpora/English/English-Atis.conllu")
+    count_tar = len(CoNLL) - count_src
 
-    if count_en==count_ja:
-        labels = [0]*count_en + [1]*count_ja
-    elif count_en < count_ja:
-        CoNLL = CoNLL[:2*count_en]
-        labels = [0]*count_en + [1]*count_en
+    """
+    if count_src==count_tar:
+        labels = [0]*count_src + [1]*count_tar
+    elif count_src < count_tar:
+        CoNLL = CoNLL[:2*count_src]
+        labels = [0]*count_src + [1]*count_src
     else:
-        CoNLL = CoNLL[count_en-count_ja:]
-        labels = [0]*count_ja + [1]*count_ja
-
-
+        CoNLL = CoNLL[count_src-count_tar:]
+        labels = [0]*count_tar + [1]*count_tar
+    """
+    labels = []
+    for _ in range(count_src):
+        labels.append(0)
+    for _ in range(count_tar):
+        labels.append(1)
+    
     
 
     trees = [conll.to_tree() for conll in CoNLL]
@@ -96,7 +93,7 @@ def main():
     data = []
 
     for t in trees:
-        root = tree.TreeNode.fromPrologString(to_prolog_upos(t))
+        root = tree.TreeNode.fromPrologString(to_prolog_unlabel(t))
         data.append(tree.Tree(root))
 
 
@@ -106,14 +103,16 @@ def main():
 
     # 部分木の比較用カーネルを作成
     lambda_value = 0.5
-    mu_value = 0.5
 
-    print(f"lambda=(mu)={lambda_value}")
+    print(f"lambda={lambda_value}")
+    """
     if kernel_type == "PT":
         kernel = tree_kernels.KernelPT(l=lambda_value, m=mu_value)
     elif kernel_type == "ST":
         kernel = tree_kernels.KernelST(l=lambda_value, savememory=0)
-
+    """
+        
+    kernel = tree_kernels.KernelST(l=lambda_value, savememory=0)
 
     train_kernel_matrix = calc_kernel_matrix(kernel, train_data)
 
