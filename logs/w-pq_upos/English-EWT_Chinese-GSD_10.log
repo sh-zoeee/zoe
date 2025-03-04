@@ -1,0 +1,64 @@
+[16621, 20618]
+vector dimension: 9515
+
+preprocess finished.
+
+Epoch: 1,	Loss: 122667.953125
+
+Epoch: 50,	Loss: 89816.2734375
+
+Epoch: 100,	Loss: 65207.66015625
+
+Epoch: 150,	Loss: 46516.62109375
+
+Epoch: 200,	Loss: 33138.25390625
+
+Epoch: 250,	Loss: 24154.4140625
+
+Epoch: 300,	Loss: 18178.744140625
+
+Epoch: 350,	Loss: 13726.0810546875
+
+Epoch: 400,	Loss: 10659.7890625
+
+Epoch: 450,	Loss: 8524.2255859375
+
+Epoch: 500,	Loss: 7019.46484375
+
+Epoch: 550,	Loss: 5828.8359375
+
+Epoch: 600,	Loss: 5045.21533203125
+
+Epoch: 650,	Loss: 4574.60400390625
+
+Epoch: 700,	Loss: 4242.27392578125
+
+Epoch: 750,	Loss: 3993.61962890625
+
+Epoch: 800,	Loss: 3783.46875
+
+Epoch: 850,	Loss: 3649.5283203125
+
+Epoch: 900,	Loss: 3519.99267578125
+
+Epoch: 950,	Loss: 3435.946533203125
+
+Epoch: 1000,	Loss: 3358.13525390625
+
+weights: Parameter containing:
+tensor([-1.6232e-21, -2.5362e+00, -1.6232e-21,  ..., -1.6232e-21,
+        -1.6232e-21, -1.6232e-21], device='cuda:1', requires_grad=True)
+
+
+Best Epoch: 1000,	Loss: 3358.13525390625
+
+train finished.
+[[3225, 285], [38, 576]]
+混同行列 M: [[3225, 285], [38, 576]]
+	error rate: 0.08
+	f1 score: 0.952
+
+
+test finished.
+
+time: 841.2070345878601 sec

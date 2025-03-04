@@ -1,0 +1,21 @@
+lambda=0.5
+0th loop, 0.4353678226470947sec
+2000th loop, 203.03335189819336sec
+4000th loop, 321.1258051395416sec
+6000th loop, 364.64759612083435sec
+0th loop, 0.2339954376220703sec
+Confusion Matrix:
+[[  0 835]
+ [  0 764]]
+              precision    recall  f1-score   support
+
+           0       0.00      0.00      0.00       835
+           1       0.48      1.00      0.65       764
+
+    accuracy                           0.48      1599
+   macro avg       0.24      0.50      0.32      1599
+weighted avg       0.23      0.48      0.31      1599
+
+acc: 0.47779862414008756
+error rate: 0.5222013758599124
+time: 565.9144644737244sec
