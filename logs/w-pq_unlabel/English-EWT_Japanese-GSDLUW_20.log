@@ -1,0 +1,64 @@
+[200, 600]
+vector dimension: 7
+
+preprocess finished.
+
+Epoch: 1,	Loss: 888.6459350585938
+
+Epoch: 50,	Loss: 585.5065307617188
+
+Epoch: 100,	Loss: 392.0152893066406
+
+Epoch: 150,	Loss: 302.4651184082031
+
+Epoch: 200,	Loss: 305.46234130859375
+
+Epoch: 250,	Loss: 306.89111328125
+
+Epoch: 300,	Loss: 310.5604248046875
+
+Epoch: 350,	Loss: 312.0594177246094
+
+Epoch: 400,	Loss: 312.6980895996094
+
+Epoch: 450,	Loss: 309.0972900390625
+
+Epoch: 500,	Loss: 312.1675720214844
+
+Epoch: 550,	Loss: 312.4953918457031
+
+Epoch: 600,	Loss: 312.6852111816406
+
+Epoch: 650,	Loss: 308.63812255859375
+
+Epoch: 700,	Loss: 314.0025634765625
+
+Epoch: 750,	Loss: 308.3409423828125
+
+Epoch: 800,	Loss: 309.7738952636719
+
+Epoch: 850,	Loss: 308.7013854980469
+
+Epoch: 900,	Loss: 307.1674499511719
+
+Epoch: 950,	Loss: 306.1670837402344
+
+Epoch: 1000,	Loss: 305.7447204589844
+
+weights: Parameter containing:
+tensor([-6.5037e-01, -1.5132e-01, -6.5037e-01, -1.5119e-01, -1.6231e-21,
+        -1.6231e-21, -6.5037e-01], device='cuda:1', requires_grad=True)
+
+
+Best Epoch: 152,	Loss: 302.39508056640625
+
+train finished.
+[[13, 25], [39, 43]]
+混同行列 M: [[13, 25], [39, 43]]
+	error rate: 0.53
+	f1 score: 0.289
+
+
+test finished.
+
+time: 397.30509328842163 sec
