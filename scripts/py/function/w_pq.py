@@ -352,4 +352,3 @@ def test(
             error += 1
     
     print(f'\terror rate: {error/num_test:.2f}')
-

@@ -1,0 +1,105 @@
+source: English-EWT
+	total: 16622, N=20: 439
+target: Rand-Balanced
+	total: 100000, N=20: 668
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Rand-Balanced.log
+source: English-EWT
+	total: 16622, N=20: 439
+target: Rand-Star
+	total: 100000, N=20: 656
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Rand-Star.log
+source: English-EWT
+	total: 16622, N=20: 439
+target: Rand-Uniform
+	total: 100000, N=20: 703
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Rand-Uniform.log
+source: English-EWT
+	total: 16622, N=20: 439
+target: Rand-Markov2
+	total: 100000, N=20: 689
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Rand-Markov2.log
+source: English-EWT
+	total: 16622, N=20: 439
+target: Rand-Markov3
+	total: 100000, N=20: 702
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Rand-Markov3.log
+source: English-EWT
+	total: 16622, N=20: 439
+target: Rand-Markov5
+	total: 100000, N=20: 660
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Rand-Markov5.log
+source: English-EWT
+	total: 16622, N=20: 439
+target: Rand-Markov10
+	total: 100000, N=20: 677
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Rand-Markov10.log

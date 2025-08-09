@@ -1,0 +1,11 @@
+Treebank,     Diameter
+English-EWT,	 18.0
+Japanese-GSDLUW,	 14.0
+French-GSD,	 15.0
+Chinese-GSD,	 18.0
+MCMC_bi(100),	 20.0
+MCMC_nl(100),	 20.0
+MCMC_star(100),	 26.0
+MCMC_bi(10000),	22.0
+MCMC_nl(10000),	22.0
+MCMC_star(10000),	22.0

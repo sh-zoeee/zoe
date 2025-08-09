@@ -2,7 +2,12 @@ from pqgrams.tree import Node
 from pqgrams.PQGram import Profile
 import zss
 
-from .TreeKernel import tree, tree_kernels
+import sys
+from os import path
+
+sys.path.append(path.abspath(path.join(path.dirname(__file__), "..")))
+
+from original.TreeKernel import tree, tree_kernels
 
 import random
 

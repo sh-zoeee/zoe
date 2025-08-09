@@ -1,0 +1,418 @@
+########################################################
+Dutch-LassySmall	(1/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Dutch-LassySmall
+	total: 17120, N=20: 508
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Dutch-LassySmall.log
+
+ETA: 3.0:58.0:16.405904531478882s
+########################################################
+Estonian-EDT	(2/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Estonian-EDT
+	total: 30930, N=20: 862
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Estonian-EDT.log
+
+ETA: 3.0:47.0:17.814388275146484s
+########################################################
+Finnish-FTB	(3/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Finnish-FTB
+	total: 18723, N=20: 130
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Finnish-FTB.log
+
+ETA: 3.0:14.0:12.220908244451493s
+########################################################
+French-GSD	(4/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: French-GSD
+	total: 16342, N=20: 588
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_French-GSD.log
+
+ETA: 3.0:8.0:42.70979833602905s
+########################################################
+German-HDT	(5/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: German-HDT
+	total: 189928, N=20: 7281
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_German-HDT.log
+
+ETA: 3.0:4.0:23.90828161239733s
+########################################################
+Hindi-HDTB	(6/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Hindi-HDTB
+	total: 16649, N=20: 718
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Hindi-HDTB.log
+
+ETA: 2.0:53.0:18.10090573628804s
+########################################################
+Icelandic-IcePaHC	(7/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Icelandic-IcePaHC
+	total: 44029, N=20: 1202
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Icelandic-IcePaHC.log
+
+ETA: 2.0:45.0:34.857158149992756s
+########################################################
+Italian-ISDT	(8/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Italian-ISDT
+	total: 14167, N=20: 361
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Italian-ISDT.log
+
+ETA: 2.0:34.0:37.186504900455475s
+########################################################
+Japanese-BCCWJ	(9/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Japanese-BCCWJ
+	total: 57109, N=20: 1424
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Japanese-BCCWJ.log
+
+ETA: 2.0:21.0:30.58913464016223s
+########################################################
+Korean-Kaist	(10/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Korean-Kaist
+	total: 27363, N=20: 932
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Korean-Kaist.log
+
+ETA: 2.0:9.0:13.8518431663515s
+########################################################
+Latvian-LVTB	(11/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Latvian-LVTB
+	total: 19367, N=20: 590
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Latvian-LVTB.log
+
+ETA: 1.0:59.0:26.54422926902771s
+########################################################
+Naija-NSC	(12/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Naija-NSC
+	total: 9241, N=20: 200
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Naija-NSC.log
+
+ETA: 1.0:48.0:53.89934480190459s
+########################################################
+Norwegian-Bokmaal	(13/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Norwegian-Bokmaal
+	total: 20044, N=20: 602
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Norwegian-Bokmaal.log
+
+ETA: 1.0:38.0:35.99528404382545s
+########################################################
+Persian-PerDT	(14/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Persian-PerDT
+	total: 29107, N=20: 973
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Persian-PerDT.log
+
+ETA: 1.0:27.0:43.66920334952192s
+########################################################
+Polish-PDB	(15/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Polish-PDB
+	total: 22152, N=20: 553
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Polish-PDB.log
+
+ETA: 1.0:17.0:6.201647949219478s
+########################################################
+Portuguese-CINTIL	(16/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Portuguese-CINTIL
+	total: 38400, N=20: 806
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Portuguese-CINTIL.log
+
+ETA: 1.0:5.0:52.730577975511096s
+########################################################
+Romanian-Nonstandard	(17/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Romanian-Nonstandard
+	total: 26225, N=20: 983
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Romanian-Nonstandard.log
+
+ETA: 0.0:55.0:7.717451838886063s
+########################################################
+Russian-SynTag	(18/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Russian-SynTag
+	total: 87336, N=20: 2663
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Russian-SynTag.log
+
+ETA: 0.0:44.0:28.726433489056944s
+########################################################
+Slovenian-SSJ	(19/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Slovenian-SSJ
+	total: 13435, N=20: 478
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Slovenian-SSJ.log
+
+ETA: 0.0:33.0:27.816463671232214s
+########################################################
+Spanish-Ancora	(20/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Spanish-Ancora
+	total: 17662, N=20: 350
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Spanish-Ancora.log
+
+ETA: 0.0:22.0:20.184347653389295s
+########################################################
+Turkish-Kenet	(21/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Turkish-Kenet
+	total: 18687, N=20: 106
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Turkish-Kenet.log
+
+ETA: 0.0:10.0:55.74433836482763s
+########################################################
+Urdu-UDTB	(22/22)
+source: English-EWT
+	total: 16622, N=20: 439
+target: Urdu-UDTB
+	total: 5130, N=20: 185
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_Urdu-UDTB.log
+
+ETA: 0.0:0.0:0.0s
