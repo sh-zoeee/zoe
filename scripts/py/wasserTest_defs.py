@@ -32,8 +32,11 @@ CORPORA_PATH = {
     #### Rand ####
     "English-EWT-RandCF": RAND_DIR+"English-EWT_RandCF"+POSTFIX_CONLLU,
 
+    "Rand-GPT2-udpipe": RAND_DIR+"Rand-GPT2-udpipe"+POSTFIX_CONLLU,
+    "Rand-GPT3-udpipe": RAND_DIR+"Rand-GPT3-udpipe"+POSTFIX_CONLLU,
     "Rand-GPT4o-spacy": RAND_DIR+"Rand-GPT4o-spacy"+POSTFIX_CONLLU,
     "Rand-GPT4o-udpipe": RAND_DIR+"Rand-GPT4o-udpipe"+POSTFIX_CONLLU,
+    "Rand-GPT5-udpipe": RAND_DIR+"Rand-GPT5-udpipe"+POSTFIX_CONLLU,
 
     "Rand-Balanced": RAND_DIR+"Rand-Balanced"+POSTFIX_CONLLU,
     "Rand-Star": RAND_DIR+"Rand-Star"+POSTFIX_CONLLU,
@@ -47,6 +50,8 @@ CORPORA_PATH = {
     #### Parser ####
     "English-EWT-spacy": PARSER_DIR+"English-EWT-ReparsedSpacy"+POSTFIX_CONLLU,
     "English-EWT-udpipe": PARSER_DIR+"English-EWT-ReparsedUDPipe"+POSTFIX_CONLLU,
+    "English-EWT-gpt4o": PARSER_DIR+"English-EWT-ReparsedGPT4o"+POSTFIX_CONLLU,
+    "English-EWT-gpt5": PARSER_DIR+"English-EWT-ReparsedGPT5"+POSTFIX_CONLLU,
     
     #### Other NLs ####
     #"Arabic-NYUAD": CORPORA_DIR+"Arabic-NYUAD"+POSTFIX_CONLLU,

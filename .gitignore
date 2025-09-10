@@ -21,3 +21,5 @@ __pycache__
 *.npy
 
 nohup.out
+
+.env

@@ -1,0 +1,15 @@
+source: English-EWT
+	total: 16622, N=20: 439
+target: English-EWT-gpt4o
+	total: 16621, N=20: 395
+STEP 1...	done.
+STEP 2...	done.
+STEP 3...	done.
+STEP 4...	done.
+STEP 5...	done.
+STEP 6...	done.
+STEP 7...	done.
+STEP 8...	done.
+STEP 9...	done.
+STEP 10...	done.
+saving to /home/yamazoe/zoe/logs/iclr2025/English-EWT_English-EWT-gpt4o.log

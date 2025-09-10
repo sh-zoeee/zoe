@@ -35,6 +35,47 @@ def conll_to_zss_unlabel(tree: pyconll.tree)->zss.Node:
     return node
 
 
+def conll_to_zss_signed_ordered(tree: pyconll.tree) -> zss.Node:
+    """Convert a pyconll tree to a signed ordered tree for ZSS.
+
+    Each node label encodes the relative position of the node to its parent:
+    - '-1': the node is to the left of its parent in the sentence order
+    - '1' : the node is to the right of its parent in the sentence order
+    - '0' : the root node
+
+    Children are ordered by their token index to obtain an ordered tree.
+    """
+
+    def to_int_id(token_id) -> int:
+        # Convert CoNLL-U token id to int (handles cases like '3', '3.1', '3-4')
+        s = str(token_id)
+        base = s.split('-')[0].split('.')[0]
+        return int(base) if base.isdigit() else 10**9
+
+    def build(node_tree, parent_idx: int | None) -> zss.Node:
+        # Determine current node index
+        cur_idx = to_int_id(node_tree.token.id) if hasattr(node_tree, 'token') else None
+
+        # Label based on relative position to parent
+        if parent_idx is None or cur_idx is None:
+            label = '0'
+        else:
+            label = '1' if cur_idx > parent_idx else '-1'
+
+        node = zss.Node(label)
+
+        # Order children by token index to make it an ordered tree
+        children = list(node_tree)
+        children.sort(key=lambda c: to_int_id(c.token.id) if hasattr(c, 'token') else 10**9)
+
+        for child in children:
+            node.addkid(build(child, cur_idx))
+
+        return node
+
+    return build(tree, None)
+
+
 def wasserstein_test(src_all, tgt_all, random_state=0, sample_size=200):
     
     random.seed(random_state)
@@ -134,7 +175,7 @@ def main(src: str, tgt: str):
     for conll in conll_src:
         if len(conll) == N:
             tree_src_N_all.append(conll.to_tree())
-    tree_src_zss_N_all = [conll_to_zss_unlabel(tree) for tree in tree_src_N_all]
+    tree_src_zss_N_all = [conll_to_zss_signed_ordered(tree) for tree in tree_src_N_all]
     print(f"\ttotal: {len(conll_src)}, N={N}: {len(tree_src_zss_N_all)}", flush=True)
 
 
@@ -143,7 +184,7 @@ def main(src: str, tgt: str):
     for conll in conll_tgt:
         if len(conll) == N:
             tree_tgt_N_all.append(conll.to_tree())
-    tree_tgt_zss_N_all = [conll_to_zss_unlabel(tree) for tree in tree_tgt_N_all]
+    tree_tgt_zss_N_all = [conll_to_zss_signed_ordered(tree) for tree in tree_tgt_N_all]
     print(f"\ttotal: {len(conll_tgt)}, N={N}: {len(tree_tgt_zss_N_all)}", flush=True)
 
     cost_list = []
@@ -171,12 +212,12 @@ def main(src: str, tgt: str):
 if __name__ == "__main__":
 
     corpora_path = list(wasserTest_defs.CORPORA_PATH.keys())
-    n = len(corpora_path[30:])
+    n = len(corpora_path)
     src = "English-EWT"
     
-    """
+    """    
     start_time = time.time()
-    for i, tgt in enumerate(corpora_path[30:]):
+    for i, tgt in enumerate(corpora_path):
 
         print("########################################################")
         print(f"{tgt}\t({i+1}/{n})")
@@ -188,10 +229,4 @@ if __name__ == "__main__":
         print(f"\nETA: {time_to_hhmmss(eta)}s")
     """
 
-    main(src, "Rand-Balanced")
-    main(src, "Rand-Star")   
-    main(src, "Rand-Uniform")
-    main(src, "Rand-Markov2") 
-    main(src, "Rand-Markov3") 
-    main(src, "Rand-Markov5") 
-    main(src, "Rand-Markov10") 
+    main(src, "English-EWT-gpt5")
